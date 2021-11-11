@@ -1,0 +1,8 @@
+node_modules/
+bin/
+.vscode
+.env
+yarn-error.log
+package-lock.json
+.env.testing
+.env.production
