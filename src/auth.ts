@@ -6,12 +6,12 @@ const API_URL: string =
     : 'https://sandbox.boletobancario.com/authorization-server'
 
 export interface TokenResponse {
-  access_token: String
-  token_type: String
+  access_token: string
+  token_type: string
   expires_in: Number
-  scope: String
-  user_name: String
-  jti: String
+  scope: string
+  user_name: string
+  jti: string
 }
 
 export const getToken = async (
