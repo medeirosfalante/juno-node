@@ -14,8 +14,8 @@ beforeEach(() => {
 describe('testing auth file', () => {
   test('get token', async () => {
     const response = await getToken(
-      process.env?.CLIENT_ID,
-      process.env?.CLIENT_SECRET,
+      process.env?.CLIENT_ID as string,
+      process.env?.CLIENT_SECRET as string,
     )
     expect(response.access_token).not.toBe('')
   })

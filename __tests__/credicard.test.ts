@@ -41,13 +41,13 @@ describe('testing credicard file', () => {
       creditCardDetails: creditCardDetails,
     }
     const responseToken = await getToken(
-      process.env?.CLIENT_ID,
-      process.env?.CLIENT_SECRET,
+      process.env?.CLIENT_ID as string,
+      process.env?.CLIENT_SECRET as string,
     )
     const response = await Payments(
       request,
       responseToken.access_token,
-      process.env.PRIV_TOKEN,
+      process.env.PRIV_TOKEN as string,
     )
     expect(response.transactionId).not.toBe('')
   })
