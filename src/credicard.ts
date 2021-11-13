@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 
+import { ErrorResponse } from '../util/error'
+
 const API_URL: string =
   process.env.NODE_ENV == 'production'
     ? 'https://api.juno.com.br'
@@ -55,26 +57,25 @@ export interface PaymentsCreditCardDetails {
 }
 
 export const Payments = async (
-  data: PaymentsRequest,
+  dataRequest: PaymentsRequest,
   jwt: string,
   priv_token: string,
-): Promise<PaymentsResponse> => {
-  return await axios({
-    url: `${API_URL}/payments`,
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'X-Resource-Token': priv_token,
-      Authorization: `Bearer ${jwt}`,
-      'X-API-Version': '2',
-    },
-    data,
-    withCredentials: true,
-  })
-    .then((response: AxiosResponse) => response.data as PaymentsResponse)
-    .catch((e) => {
-      console.log(e.response.data)
-      return e
+) => {
+  try {
+    const { data } = await axios({
+      url: `${API_URL}/payments`,
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'X-Resource-Token': priv_token,
+        Authorization: `Bearer ${jwt}`,
+        'X-API-Version': '2',
+      },
+      data: dataRequest,
+      withCredentials: true,
     })
+    return data as PaymentsResponse
+  } catch (err:any) {
+    throw err.response?.data
+  }
 }

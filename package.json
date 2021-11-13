@@ -23,7 +23,7 @@
     "typescript": "^4.4.4"
   },
   "name": "juno-sdk-node",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Api integration juno in typescript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
